@@ -5,6 +5,7 @@ import { useTranslation } from 'react-i18next'
 import { useAuth } from '@/hooks/useAuth'
 import { useRouter } from 'next/navigation'
 import { Home, Trophy, LogOut, User } from 'lucide-react'
+import InstallButton from './InstallButton'
 
 export default function Navigation() {
   const { t } = useTranslation()
@@ -47,10 +48,11 @@ export default function Navigation() {
           </div>
 
           <div className="flex items-center gap-4">
+            <InstallButton />
             {user && (
               <div className="flex items-center gap-2 text-gray-300">
                 <User className="w-4 h-4" />
-                <span className="text-sm">{user.email}</span>
+                <span className="text-sm hidden sm:inline">{user.email}</span>
               </div>
             )}
             <button
@@ -58,7 +60,7 @@ export default function Navigation() {
               className="flex items-center gap-2 text-gray-300 hover:text-white transition-colors"
             >
               <LogOut className="w-4 h-4" />
-              <span>{t('auth.signOut')}</span>
+              <span className="hidden sm:inline">{t('auth.signOut')}</span>
             </button>
           </div>
         </div>

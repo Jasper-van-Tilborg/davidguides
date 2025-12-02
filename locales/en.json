@@ -7,7 +7,10 @@
     "delete": "Delete",
     "edit": "Edit",
     "add": "Add",
-    "close": "Close"
+    "close": "Close",
+    "installApp": "Install App",
+    "install": "Install",
+    "installed": "Installed"
   },
   "auth": {
     "signIn": "Sign In",
@@ -47,6 +50,9 @@
     "templates": "Habit Templates",
     "achievements": "Achievements",
     "translations": "Translations"
+  },
+  "install": {
+    "iosInstructions": "To install the app:\n\n1. Tap the Share button (square with arrow)\n2. Scroll down\n3. Tap \"Add to Home Screen\"\n4. Tap \"Add\""
   }
 }
 

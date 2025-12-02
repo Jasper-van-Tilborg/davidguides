@@ -3,6 +3,7 @@
 import Link from 'next/link'
 import { useTranslation } from 'react-i18next'
 import LanguageSwitcher from '@/components/LanguageSwitcher'
+import InstallButton from '@/components/InstallButton'
 
 export default function HomeContent() {
   const { t } = useTranslation()
@@ -15,7 +16,10 @@ export default function HomeContent() {
           <h1 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-adventure-purple to-adventure-pink bg-clip-text text-transparent">
             {t('common.appName')}
           </h1>
-          <LanguageSwitcher />
+          <div className="flex items-center gap-4">
+            <InstallButton />
+            <LanguageSwitcher />
+          </div>
         </header>
 
         {/* Hero Section */}

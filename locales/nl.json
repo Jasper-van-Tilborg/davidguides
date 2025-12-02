@@ -7,7 +7,10 @@
     "delete": "Verwijderen",
     "edit": "Bewerken",
     "add": "Toevoegen",
-    "close": "Sluiten"
+    "close": "Sluiten",
+    "installApp": "Installeer App",
+    "install": "Installeer",
+    "installed": "Geïnstalleerd"
   },
   "auth": {
     "signIn": "Inloggen",
@@ -47,6 +50,9 @@
     "templates": "Gewoonte Sjablonen",
     "achievements": "Prestaties",
     "translations": "Vertalingen"
+  },
+  "install": {
+    "iosInstructions": "Om de app te installeren:\n\n1. Klik op de Share knop (vierkant met pijl)\n2. Scroll naar beneden\n3. Klik \"Add to Home Screen\"\n4. Klik \"Add\""
   }
 }
 
