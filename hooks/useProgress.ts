@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import { storage } from '@/lib/storage'
+import { checkAchievements } from '@/lib/achievements'
 import type { UserProgress } from '@/types'
 
 export function useProgress() {
@@ -29,8 +30,22 @@ export function useProgress() {
   }
 
   const addXP = (amount: number) => {
+    const oldProgress = storage.getProgress()
     const updated = storage.addXP(amount)
     setProgress(updated)
+    
+    // Check for achievements when level or world changes
+    if (oldProgress) {
+      const levelChanged = updated.level > oldProgress.level
+      const worldChanged = updated.current_world > oldProgress.current_world
+      
+      if (levelChanged || worldChanged) {
+        setTimeout(() => {
+          checkAchievements()
+        }, 100)
+      }
+    }
+    
     return updated
   }
 

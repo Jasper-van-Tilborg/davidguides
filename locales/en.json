@@ -10,7 +10,10 @@
     "close": "Close",
     "installApp": "Install App",
     "install": "Install",
-    "installed": "Installed"
+    "installed": "Installed",
+    "completed": "Completed",
+    "achievementUnlocked": "Achievement Unlocked!",
+    "earned": "earned!"
   },
   "auth": {
     "signIn": "Sign In",
@@ -34,7 +37,10 @@
     "habitDescription": "Description",
     "xpReward": "XP Reward",
     "streak": "Streak",
-    "days": "days"
+    "days": "days",
+    "useTemplate": "Use Template",
+    "selectTemplate": "Select Template",
+    "allCategories": "All"
   },
   "adventure": {
     "title": "Adventure",
@@ -43,16 +49,78 @@
     "progress": "Progress",
     "nextLevel": "Next Level",
     "worldMap": "World Map",
-    "currentWorld": "Current World"
+    "currentWorld": "World",
+    "current": "Current",
+    "required": "required",
+    "completed": "Completed",
+    "almostThere": "Almost there!"
   },
   "admin": {
     "title": "Admin Dashboard",
+    "description": "Manage habit templates, achievements, and translations",
     "templates": "Habit Templates",
     "achievements": "Achievements",
-    "translations": "Translations"
+    "translations": "Translations",
+    "translationsDescription": "Translation management coming soon. Currently using react-i18next with JSON files."
+  },
+  "achievements": {
+    "title": "Achievements",
+    "unlocked": "Unlocked",
+    "locked": "Locked",
+    "progress": "Progress",
+    "noAchievements": "No achievements yet. Keep completing habits to unlock achievements!",
+    "categories": {
+      "all": "All",
+      "habits": "Habits",
+      "progress": "Progress",
+      "streaks": "Streaks",
+      "special": "Special"
+    }
   },
   "install": {
     "iosInstructions": "To install the app:\n\n1. Tap the Share button (square with arrow)\n2. Scroll down\n3. Tap \"Add to Home Screen\"\n4. Tap \"Add\""
+  },
+  "calendar": {
+    "title": "Calendar",
+    "january": "January",
+    "february": "February",
+    "march": "March",
+    "april": "April",
+    "may": "May",
+    "june": "June",
+    "july": "July",
+    "august": "August",
+    "september": "September",
+    "october": "October",
+    "november": "November",
+    "december": "December",
+    "sun": "Sun",
+    "mon": "Mon",
+    "tue": "Tue",
+    "wed": "Wed",
+    "thu": "Thu",
+    "fri": "Fri",
+    "sat": "Sat",
+    "today": "Today",
+    "goToToday": "Today",
+    "allCompleted": "All habits completed",
+    "someCompleted": "Some habits completed",
+    "noHabits": "No habits yet. Add some habits to track!",
+    "habitsForDate": "Habits for this day",
+    "swipeToNavigate": "Swipe to navigate"
+  },
+  "settings": {
+    "title": "Settings",
+    "exportImport": "Export / Import",
+    "export": "Export Data",
+    "exportDescription": "Download all your habits, progress, and achievements as a JSON file.",
+    "import": "Import Data",
+    "importDescription": "Import habits, progress, and achievements from a JSON file.",
+    "mergeMode": "Merge with existing data (unchecked = replace all)",
+    "download": "Download Export",
+    "selectFile": "Select File",
+    "importSuccess": "Import Successful!",
+    "importFailed": "Import Failed"
   }
 }
 

@@ -5,12 +5,13 @@ Een meertalige Progressive Web App waarin gebruikers dagelijkse gewoontes tracke
 ## ✨ Features
 
 - 🎯 **Gamified Habit Tracking** - Elke gewoonte geeft XP, levels en wereldvoortgang
-- 🌍 **Meertalig** - Ondersteuning voor Nederlands en Engels
-- 📱 **PWA** - Installeerbaar als app, werkt offline
+- 🌍 **Meertalig** - URL-based routing (NL/EN) met TypeScript translations
+- 📱 **Mobile-First PWA** - Volledig geoptimaliseerd voor mobile, installeerbaar als app
 - 🔐 **Authenticatie** - LocalStorage-based authenticatie systeem
 - 🎨 **Modern UI** - Gebouwd met Next.js, TypeScript en Tailwind CSS
 - ⚡ **Offline Support** - Service Worker caching voor offline gebruik
 - 🎮 **Gamification** - XP systeem, levels, werelden en streaks
+- 📱 **Touch-Friendly** - Grote touch targets, hamburger menu, mobile-optimized layouts
 
 ## 🚀 Getting Started
 
@@ -69,22 +70,29 @@ De production server draait op [http://localhost:3001](http://localhost:3001).
 ```
 ├── app/                    # Next.js App Router
 │   ├── layout.tsx         # Root layout met PWA metadata
-│   ├── page.tsx           # Homepage
+│   ├── page.tsx           # Root redirect naar /nl
 │   ├── manifest.ts        # PWA manifest (TypeScript)
 │   ├── providers.tsx      # Client providers (i18n)
-│   ├── globals.css        # Global styles
-│   ├── dashboard/         # Dashboard pagina
-│   ├── adventure/         # Adventure/world map pagina
-│   ├── auth/              # Authenticatie pagina's
-│   │   ├── signin/
-│   │   └── signup/
+│   ├── globals.css        # Global styles + mobile optimizations
+│   ├── translations.ts    # TypeScript translations (NL/EN)
+│   ├── [lang]/            # Dynamic language routing
+│   │   ├── layout.tsx     # Language layout met Navigation
+│   │   ├── page.tsx       # Homepage
+│   │   ├── dashboard/     # Dashboard pagina
+│   │   ├── adventure/     # Adventure/world map pagina
+│   │   └── auth/          # Authenticatie pagina's
+│   │       ├── signin/
+│   │       └── signup/
 │   └── offline/           # Offline fallback pagina
 ├── components/            # React components
 │   ├── ui/               # Reusable UI components
-│   │   ├── Button.tsx
+│   │   ├── Button.tsx    # Touch-friendly button
 │   │   └── Card.tsx
 │   ├── auth/             # Authenticatie componenten
-│   ├── Navigation.tsx    # Main navigation
+│   ├── Navigation.tsx    # Main navigation (hamburger menu)
+│   ├── HomeContent.tsx   # Homepage content
+│   ├── DashboardContent.tsx
+│   ├── AdventureContent.tsx
 │   ├── HabitCard.tsx     # Habit display card
 │   ├── ProgressDisplay.tsx
 │   ├── AddHabitModal.tsx
@@ -95,9 +103,9 @@ De production server draait op [http://localhost:3001](http://localhost:3001).
 │   └── useProgress.ts    # Progress/XP tracking hook
 ├── lib/                   # Utilities
 │   ├── storage.ts        # LocalStorage client & auth
-│   ├── i18n.ts           # i18n configuration
+│   ├── i18n.ts           # i18n configuration (react-i18next)
 │   └── utils.ts          # Helper functions
-├── locales/              # Translation files
+├── locales/              # Translation files (react-i18next)
 │   ├── en.json
 │   └── nl.json
 ├── types/                # TypeScript type definitions
@@ -110,6 +118,7 @@ De production server draait op [http://localhost:3001](http://localhost:3001).
 │   │   ├── icon-512.png  # Android icon (512x512)
 │   │   └── SETUP.md      # Icon setup instructies
 │   └── robots.txt
+├── tailwind.config.js    # Tailwind CSS configuratie
 ├── next.config.js        # Next.js + PWA configuratie
 └── package.json
 ```
@@ -122,11 +131,15 @@ De production server draait op [http://localhost:3001](http://localhost:3001).
 - [x] Wereld unlock systeem (elke 5 levels)
 - [x] Dagelijkse check-ins systeem
 - [x] Streak tracking
-- [x] Meertalig systeem (NL/EN)
+- [x] Meertalig systeem (NL/EN) - URL-based routing met TypeScript translations
 - [x] PWA configuratie (TypeScript manifest)
 - [x] Service Worker met caching strategie
 - [x] Offline fallback pagina
 - [x] Installable PWA
+- [x] Mobile-first design met hamburger menu
+- [x] Touch-friendly interfaces (44px minimum touch targets)
+- [x] Responsive layouts voor alle schermformaten
+- [x] Language switching zonder page reload
 
 ## 🎯 Toekomstige Features
 
@@ -137,6 +150,17 @@ De production server draait op [http://localhost:3001](http://localhost:3001).
 - [ ] Export/Import functionaliteit
 - [ ] Push notifications
 - [ ] Background sync
+
+## 📱 Mobile Optimizations
+
+De app is volledig geoptimaliseerd voor mobile devices:
+
+- **Hamburger Menu** - Mobile navigation met slide-out menu
+- **Touch Targets** - Minimum 44px voor alle klikbare elementen
+- **Responsive Layouts** - Alle pagina's zijn mobile-first
+- **Touch-Friendly** - `touch-manipulation` CSS voor betere touch response
+- **Mobile Viewport** - Correct geconfigureerde viewport meta tags
+- **iOS Optimizations** - Voorkomt zoom op input focus, verbeterde scrolling
 
 ## 📱 PWA Setup
 
@@ -229,10 +253,29 @@ Alle data wordt automatisch gesynchroniseerd en werkt volledig offline.
 Deze app implementeert de volgende workshop guides:
 
 1. ✅ **PWA Workshop** - TypeScript manifest, Service Worker, offline support (@ducanh2912/next-pwa)
-2. ✅ **Multilingual Workshop** - i18n systeem met NL/EN support (react-i18next)
+2. ✅ **Multilingual Portfolio Workshop** - URL-based routing met `[lang]` parameter, TypeScript translations, language switching
 3. ✅ **LocalStorage Auth** - Authenticatie en data opslag via LocalStorage
 4. ✅ **CRUD Operations** - Volledige CRUD operaties voor habits via LocalStorage
-5. ⏳ **Git/GitHub** - Feature branches en workflow (to be implemented)
+5. ✅ **Mobile-First Design** - Touch-friendly interfaces, hamburger menu, responsive layouts
+6. ⏳ **Git/GitHub** - Feature branches en workflow (to be implemented)
+
+## 🌍 URL Structuur
+
+De app gebruikt URL-based language routing:
+
+- `/` → Redirect naar `/nl`
+- `/nl` → Nederlandse homepage
+- `/nl/dashboard` → Nederlandse dashboard
+- `/nl/adventure` → Nederlandse adventure
+- `/nl/auth/signin` → Nederlandse sign in
+- `/nl/auth/signup` → Nederlandse sign up
+- `/en` → English homepage
+- `/en/dashboard` → English dashboard
+- `/en/adventure` → English adventure
+- `/en/auth/signin` → English sign in
+- `/en/auth/signup` → English sign up
+
+Language switching behoudt de huidige pagina - als je op `/nl/dashboard` bent en naar Engels wisselt, ga je naar `/en/dashboard`.
 
 ## 🚀 Deployment
 

@@ -1,34 +1,41 @@
 'use client'
 
+import { usePathname, useRouter } from 'next/navigation'
 import { useTranslation } from 'react-i18next'
+import { useEffect } from 'react'
 import { Globe } from 'lucide-react'
+import { validateLanguage } from '@/app/translations'
 
 export default function LanguageSwitcher() {
   const { i18n } = useTranslation()
+  const pathname = usePathname()
+  const router = useRouter()
 
-  const switchLanguage = (lng: string) => {
-    i18n.changeLanguage(lng)
-    // Store preference in localStorage
-    if (typeof window !== 'undefined') {
-      localStorage.setItem('language', lng)
-    }
-  }
+  // Extract language from pathname
+  const lang = pathname.split('/')[1] || 'nl'
+  const currentLang = validateLanguage(lang)
 
-  // Load saved language preference
-  if (typeof window !== 'undefined') {
-    const savedLang = localStorage.getItem('language')
-    if (savedLang && savedLang !== i18n.language) {
-      i18n.changeLanguage(savedLang)
+  // Sync i18n with URL language
+  useEffect(() => {
+    if (i18n.language !== currentLang) {
+      i18n.changeLanguage(currentLang)
     }
+  }, [currentLang, i18n])
+
+  const changeLanguage = (newLang: string) => {
+    // Extract current page path after language code
+    const currentPage = pathname.split('/').slice(2).join('/') || ''
+    const newPath = currentPage ? `/${newLang}/${currentPage}` : `/${newLang}`
+    router.push(newPath)
   }
 
   return (
     <div className="flex items-center gap-2">
       <Globe className="w-5 h-5 text-gray-400" />
       <button
-        onClick={() => switchLanguage('en')}
+        onClick={() => changeLanguage('en')}
         className={`px-3 py-1 rounded ${
-          i18n.language === 'en'
+          currentLang === 'en'
             ? 'bg-adventure-purple text-white'
             : 'text-gray-400 hover:text-white'
         }`}
@@ -36,9 +43,9 @@ export default function LanguageSwitcher() {
         EN
       </button>
       <button
-        onClick={() => switchLanguage('nl')}
+        onClick={() => changeLanguage('nl')}
         className={`px-3 py-1 rounded ${
-          i18n.language === 'nl'
+          currentLang === 'nl'
             ? 'bg-adventure-purple text-white'
             : 'text-gray-400 hover:text-white'
         }`}

@@ -36,6 +36,27 @@ export interface Achievement {
   icon?: string
   xp_reward: number
   requirement: number
-  type: 'streak' | 'total_completions' | 'level' | 'custom'
+  type: 'streak' | 'total_completions' | 'level' | 'world' | 'custom'
+  category?: 'habits' | 'progress' | 'streaks' | 'special'
+}
+
+export interface UserAchievement {
+  id: string
+  achievement_id: string
+  user_id: string
+  unlocked_at: string
+  progress?: number // Current progress towards requirement
+}
+
+export interface HabitTemplate {
+  id: string
+  name: string
+  description?: string
+  xp_reward: number
+  icon?: string
+  category?: string
+  is_default?: boolean
+  created_at: string
+  updated_at: string
 }
 

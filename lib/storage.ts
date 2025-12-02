@@ -1,4 +1,4 @@
-import type { Habit, HabitCheckIn, UserProgress, Achievement } from '@/types'
+import type { Habit, HabitCheckIn, UserProgress, Achievement, UserAchievement, HabitTemplate } from '@/types'
 
 // Storage keys
 const STORAGE_KEYS = {
@@ -7,6 +7,8 @@ const STORAGE_KEYS = {
   CHECK_INS: 'habit_adventure_check_ins',
   PROGRESS: 'habit_adventure_progress',
   ACHIEVEMENTS: 'habit_adventure_achievements',
+  USER_ACHIEVEMENTS: 'habit_adventure_user_achievements',
+  HABIT_TEMPLATES: 'habit_adventure_templates',
   SETTINGS: 'habit_adventure_settings',
 } as const
 
@@ -172,23 +174,26 @@ export const storage = {
       return this.initializeProgress(user.id)
     }
 
-    progress.xp += amount
+    // Add XP to total (xp field is kept for backwards compatibility but not used)
     progress.total_xp += amount
+    progress.xp = progress.total_xp // Keep in sync
     progress.updated_at = new Date().toISOString()
 
-    // Calculate level (100 XP per level)
-    const newLevel = Math.floor(progress.total_xp / 100) + 1
+    // Calculate new level using progressive system
+    const { calculateLevel, calculateWorld, MAX_LEVEL } = require('@/lib/utils')
+    const newLevel = calculateLevel(progress.total_xp)
+    
     if (newLevel > progress.level) {
-      progress.level = newLevel
-      // Unlock new world every 5 levels
-      progress.current_world = Math.floor(progress.level / 5) + 1
+      progress.level = Math.min(newLevel, MAX_LEVEL) // Cap at MAX_LEVEL
+      // Calculate world based on level (progressive with cap)
+      progress.current_world = calculateWorld(progress.level)
     }
 
     this.saveProgress(progress)
     return progress
   },
 
-  // Achievements
+  // Achievements (templates/definitions)
   getAchievements(): Achievement[] {
     if (typeof window === 'undefined') return []
     const achievementsStr = localStorage.getItem(STORAGE_KEYS.ACHIEVEMENTS)
@@ -198,6 +203,106 @@ export const storage = {
   saveAchievements(achievements: Achievement[]): void {
     if (typeof window === 'undefined') return
     localStorage.setItem(STORAGE_KEYS.ACHIEVEMENTS, JSON.stringify(achievements))
+  },
+
+  // User Achievements (unlocked achievements)
+  getUserAchievements(): UserAchievement[] {
+    if (typeof window === 'undefined') return []
+    const userAchievementsStr = localStorage.getItem(STORAGE_KEYS.USER_ACHIEVEMENTS)
+    return userAchievementsStr ? JSON.parse(userAchievementsStr) : []
+  },
+
+  saveUserAchievements(userAchievements: UserAchievement[]): void {
+    if (typeof window === 'undefined') return
+    localStorage.setItem(STORAGE_KEYS.USER_ACHIEVEMENTS, JSON.stringify(userAchievements))
+  },
+
+  getUserAchievement(achievementId: string): UserAchievement | null {
+    const userAchievements = this.getUserAchievements()
+    const user = this.getCurrentUser()
+    if (!user) return null
+    return userAchievements.find(ua => ua.achievement_id === achievementId && ua.user_id === user.id) || null
+  },
+
+  unlockAchievement(achievementId: string): UserAchievement | null {
+    const user = this.getCurrentUser()
+    if (!user) return null
+
+    const userAchievements = this.getUserAchievements()
+    const existing = userAchievements.find(ua => ua.achievement_id === achievementId && ua.user_id === user.id)
+    if (existing) return existing // Already unlocked
+
+    const achievement = this.getAchievements().find(a => a.id === achievementId)
+    if (!achievement) return null
+
+    const newUserAchievement: UserAchievement = {
+      id: crypto.randomUUID(),
+      achievement_id: achievementId,
+      user_id: user.id,
+      unlocked_at: new Date().toISOString(),
+    }
+
+    userAchievements.push(newUserAchievement)
+    this.saveUserAchievements(userAchievements)
+
+    // Award XP for achievement
+    if (achievement.xp_reward > 0) {
+      this.addXP(achievement.xp_reward)
+    }
+
+    return newUserAchievement
+  },
+
+  // Habit Templates
+  getHabitTemplates(): HabitTemplate[] {
+    if (typeof window === 'undefined') return []
+    const templatesStr = localStorage.getItem(STORAGE_KEYS.HABIT_TEMPLATES)
+    return templatesStr ? JSON.parse(templatesStr) : []
+  },
+
+  saveHabitTemplates(templates: HabitTemplate[]): void {
+    if (typeof window === 'undefined') return
+    localStorage.setItem(STORAGE_KEYS.HABIT_TEMPLATES, JSON.stringify(templates))
+  },
+
+  getHabitTemplateById(id: string): HabitTemplate | null {
+    const templates = this.getHabitTemplates()
+    return templates.find(t => t.id === id) || null
+  },
+
+  addHabitTemplate(template: Omit<HabitTemplate, 'id' | 'created_at' | 'updated_at'>): HabitTemplate {
+    const templates = this.getHabitTemplates()
+    const newTemplate: HabitTemplate = {
+      ...template,
+      id: crypto.randomUUID(),
+      created_at: new Date().toISOString(),
+      updated_at: new Date().toISOString(),
+    }
+    templates.push(newTemplate)
+    this.saveHabitTemplates(templates)
+    return newTemplate
+  },
+
+  updateHabitTemplate(id: string, updates: Partial<HabitTemplate>): HabitTemplate | null {
+    const templates = this.getHabitTemplates()
+    const index = templates.findIndex(t => t.id === id)
+    if (index === -1) return null
+
+    templates[index] = {
+      ...templates[index],
+      ...updates,
+      updated_at: new Date().toISOString(),
+    }
+    this.saveHabitTemplates(templates)
+    return templates[index]
+  },
+
+  deleteHabitTemplate(id: string): boolean {
+    const templates = this.getHabitTemplates()
+    const filtered = templates.filter(t => t.id !== id)
+    if (filtered.length === templates.length) return false
+    this.saveHabitTemplates(filtered)
+    return true
   },
 
   // Settings
@@ -263,5 +368,5 @@ export const auth = {
 }
 
 // Re-export types
-export type { Habit, HabitCheckIn, UserProgress, Achievement }
+export type { Habit, HabitCheckIn, UserProgress, Achievement, UserAchievement, HabitTemplate }
 

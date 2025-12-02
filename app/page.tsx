@@ -1,10 +1,5 @@
-import { Suspense } from 'react'
-import HomeContent from '@/components/HomeContent'
+import { redirect } from 'next/navigation'
 
-export default function HomePage() {
-  return (
-    <Suspense fallback={<div>Loading...</div>}>
-      <HomeContent />
-    </Suspense>
-  )
+export default function RootPage() {
+  redirect('/nl')
 }

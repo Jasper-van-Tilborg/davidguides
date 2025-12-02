@@ -10,7 +10,10 @@
     "close": "Sluiten",
     "installApp": "Installeer App",
     "install": "Installeer",
-    "installed": "Geïnstalleerd"
+    "installed": "Geïnstalleerd",
+    "completed": "Voltooid",
+    "achievementUnlocked": "Prestatie Ontgrendeld!",
+    "earned": "verdiend!"
   },
   "auth": {
     "signIn": "Inloggen",
@@ -34,7 +37,10 @@
     "habitDescription": "Beschrijving",
     "xpReward": "XP Beloning",
     "streak": "Reeks",
-    "days": "dagen"
+    "days": "dagen",
+    "useTemplate": "Gebruik Sjabloon",
+    "selectTemplate": "Selecteer Sjabloon",
+    "allCategories": "Alles"
   },
   "adventure": {
     "title": "Avontuur",
@@ -43,16 +49,78 @@
     "progress": "Voortgang",
     "nextLevel": "Volgende Niveau",
     "worldMap": "Wereldkaart",
-    "currentWorld": "Huidige Wereld"
+    "currentWorld": "Wereld",
+    "current": "Huidig",
+    "required": "vereist",
+    "completed": "Voltooid",
+    "almostThere": "Bijna daar!"
   },
   "admin": {
     "title": "Admin Dashboard",
+    "description": "Beheer gewoonte sjablonen, prestaties en vertalingen",
     "templates": "Gewoonte Sjablonen",
     "achievements": "Prestaties",
-    "translations": "Vertalingen"
+    "translations": "Vertalingen",
+    "translationsDescription": "Vertaling beheer komt binnenkort. Momenteel gebruikt react-i18next met JSON bestanden."
+  },
+  "achievements": {
+    "title": "Prestaties",
+    "unlocked": "Ontgrendeld",
+    "locked": "Vergrendeld",
+    "progress": "Voortgang",
+    "noAchievements": "Nog geen prestaties. Blijf gewoontes voltooien om prestaties te ontgrendelen!",
+    "categories": {
+      "all": "Alles",
+      "habits": "Gewoontes",
+      "progress": "Voortgang",
+      "streaks": "Reeksen",
+      "special": "Speciaal"
+    }
   },
   "install": {
     "iosInstructions": "Om de app te installeren:\n\n1. Klik op de Share knop (vierkant met pijl)\n2. Scroll naar beneden\n3. Klik \"Add to Home Screen\"\n4. Klik \"Add\""
+  },
+  "calendar": {
+    "title": "Kalender",
+    "january": "Januari",
+    "february": "Februari",
+    "march": "Maart",
+    "april": "April",
+    "may": "Mei",
+    "june": "Juni",
+    "july": "Juli",
+    "august": "Augustus",
+    "september": "September",
+    "october": "Oktober",
+    "november": "November",
+    "december": "December",
+    "sun": "Zo",
+    "mon": "Ma",
+    "tue": "Di",
+    "wed": "Wo",
+    "thu": "Do",
+    "fri": "Vr",
+    "sat": "Za",
+    "today": "Vandaag",
+    "goToToday": "Vandaag",
+    "allCompleted": "Alle gewoontes voltooid",
+    "someCompleted": "Sommige gewoontes voltooid",
+    "noHabits": "Nog geen gewoontes. Voeg gewoontes toe om te volgen!",
+    "habitsForDate": "Gewoontes voor deze dag",
+    "swipeToNavigate": "Swiipen om te navigeren"
+  },
+  "settings": {
+    "title": "Instellingen",
+    "exportImport": "Exporteren / Importeren",
+    "export": "Data Exporteren",
+    "exportDescription": "Download al je gewoontes, voortgang en prestaties als een JSON bestand.",
+    "import": "Data Importeren",
+    "importDescription": "Importeer gewoontes, voortgang en prestaties vanuit een JSON bestand.",
+    "mergeMode": "Samenvoegen met bestaande data (uitgevinkt = alles vervangen)",
+    "download": "Export Downloaden",
+    "selectFile": "Selecteer Bestand",
+    "importSuccess": "Import Succesvol!",
+    "importFailed": "Import Mislukt"
   }
 }
 

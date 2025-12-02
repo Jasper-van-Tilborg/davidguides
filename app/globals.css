@@ -19,6 +19,10 @@ body {
     transparent,
     rgba(30, 30, 50, 1)
   ) rgba(26, 26, 46, 1);
+  /* Prevent text size adjustment on iOS */
+  -webkit-text-size-adjust: 100%;
+  /* Improve touch scrolling */
+  -webkit-overflow-scrolling: touch;
 }
 
 /* Custom Utilities */
@@ -50,5 +54,62 @@ body {
 
 ::-webkit-scrollbar-thumb:hover {
   background: #5a4fd6;
+}
+
+/* Hide scrollbar for horizontal scroll */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+/* Animations */
+@keyframes slide-up {
+  from {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.animate-slide-up {
+  animation: slide-up 0.3s ease-out;
+}
+
+@keyframes pulse-slow {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+
+.animate-pulse-slow {
+  animation: pulse-slow 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* Mobile optimizations */
+@media (max-width: 640px) {
+  /* Larger touch targets */
+  button, a, input, select, textarea {
+    min-height: 44px;
+  }
+  
+  /* Prevent zoom on input focus (iOS) */
+  input, select, textarea {
+    font-size: 16px;
+  }
+  
+  /* Better tap highlighting */
+  * {
+    -webkit-tap-highlight-color: rgba(108, 92, 231, 0.2);
+  }
 }
 
