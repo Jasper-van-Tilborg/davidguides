@@ -1,0 +1,52 @@
+{
+  "common": {
+    "appName": "Habit Adventure",
+    "loading": "Loading...",
+    "save": "Save",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "edit": "Edit",
+    "add": "Add",
+    "close": "Close"
+  },
+  "auth": {
+    "signIn": "Sign In",
+    "signUp": "Sign Up",
+    "signOut": "Sign Out",
+    "email": "Email",
+    "password": "Password",
+    "forgotPassword": "Forgot Password?",
+    "noAccount": "Don't have an account?",
+    "hasAccount": "Already have an account?",
+    "magicLink": "Send Magic Link"
+  },
+  "habits": {
+    "title": "My Habits",
+    "addHabit": "Add Habit",
+    "noHabits": "No habits yet. Start your adventure!",
+    "completed": "Completed",
+    "notCompleted": "Not Completed",
+    "completeHabit": "Complete Habit",
+    "habitName": "Habit Name",
+    "habitDescription": "Description",
+    "xpReward": "XP Reward",
+    "streak": "Streak",
+    "days": "days"
+  },
+  "adventure": {
+    "title": "Adventure",
+    "level": "Level",
+    "xp": "XP",
+    "progress": "Progress",
+    "nextLevel": "Next Level",
+    "worldMap": "World Map",
+    "currentWorld": "Current World"
+  },
+  "admin": {
+    "title": "Admin Dashboard",
+    "templates": "Habit Templates",
+    "achievements": "Achievements",
+    "translations": "Translations"
+  }
+}
+

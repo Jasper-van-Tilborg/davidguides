@@ -1,0 +1,35 @@
+{
+  "name": "habit-adventure-app",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev --turbo",
+    "build": "next build --webpack",
+    "start": "next start -p 3001",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "next": "^14.0.4",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "@ducanh2912/next-pwa": "^10.0.0",
+    "next-i18next": "^15.2.0",
+    "react-i18next": "^13.5.0",
+    "i18next": "^23.7.16",
+    "zustand": "^4.4.7",
+    "date-fns": "^3.0.6",
+    "lucide-react": "^0.303.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.6",
+    "@types/react": "^18.2.46",
+    "@types/react-dom": "^18.2.18",
+    "typescript": "^5.3.3",
+    "tailwindcss": "^3.4.0",
+    "postcss": "^8.4.32",
+    "autoprefixer": "^10.4.16",
+    "eslint": "^8.56.0",
+    "eslint-config-next": "^14.0.4"
+  }
+}
+

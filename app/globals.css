@@ -1,0 +1,54 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Adventure Theme Colors */
+  --color-adventure-dark: #1a1a2e;
+  --color-adventure-purple: #6c5ce7;
+  --color-adventure-pink: #fd79a8;
+  --color-adventure-cyan: #00d2d3;
+}
+
+/* Global Styles */
+body {
+  @apply font-sans text-white transition-colors duration-300;
+  min-height: 100vh;
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    rgba(30, 30, 50, 1)
+  ) rgba(26, 26, 46, 1);
+}
+
+/* Custom Utilities */
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .glass {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(26, 26, 46, 0.5);
+}
+
+::-webkit-scrollbar-thumb {
+  background: #6c5ce7;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #5a4fd6;
+}
+

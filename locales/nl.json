@@ -1,0 +1,52 @@
+{
+  "common": {
+    "appName": "Gewoonte Avontuur",
+    "loading": "Laden...",
+    "save": "Opslaan",
+    "cancel": "Annuleren",
+    "delete": "Verwijderen",
+    "edit": "Bewerken",
+    "add": "Toevoegen",
+    "close": "Sluiten"
+  },
+  "auth": {
+    "signIn": "Inloggen",
+    "signUp": "Registreren",
+    "signOut": "Uitloggen",
+    "email": "E-mail",
+    "password": "Wachtwoord",
+    "forgotPassword": "Wachtwoord vergeten?",
+    "noAccount": "Nog geen account?",
+    "hasAccount": "Al een account?",
+    "magicLink": "Verstuur Magic Link"
+  },
+  "habits": {
+    "title": "Mijn Gewoontes",
+    "addHabit": "Gewoonte Toevoegen",
+    "noHabits": "Nog geen gewoontes. Begin je avontuur!",
+    "completed": "Voltooid",
+    "notCompleted": "Niet Voltooid",
+    "completeHabit": "Gewoonte Voltooien",
+    "habitName": "Gewoonte Naam",
+    "habitDescription": "Beschrijving",
+    "xpReward": "XP Beloning",
+    "streak": "Reeks",
+    "days": "dagen"
+  },
+  "adventure": {
+    "title": "Avontuur",
+    "level": "Niveau",
+    "xp": "XP",
+    "progress": "Voortgang",
+    "nextLevel": "Volgende Niveau",
+    "worldMap": "Wereldkaart",
+    "currentWorld": "Huidige Wereld"
+  },
+  "admin": {
+    "title": "Admin Dashboard",
+    "templates": "Gewoonte Sjablonen",
+    "achievements": "Prestaties",
+    "translations": "Vertalingen"
+  }
+}
+
