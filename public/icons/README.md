@@ -29,3 +29,7 @@ Plaats `apple-touch-icon.png` (180x180 pixels) in de `public/` folder (niet in i
 - Houd belangrijke elementen gecentreerd (veilige zone: middelste 80%)
 - Test op echte devices om te zien hoe het eruit ziet
 
+
+
+
+

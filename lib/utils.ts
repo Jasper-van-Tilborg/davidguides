@@ -27,6 +27,44 @@ export function isToday(date: Date | string): boolean {
   )
 }
 
+export function isTomorrow(date: Date | string): boolean {
+  const d = typeof date === 'string' ? new Date(date) : date
+  const tomorrow = new Date()
+  tomorrow.setDate(tomorrow.getDate() + 1)
+  return (
+    d.getDate() === tomorrow.getDate() &&
+    d.getMonth() === tomorrow.getMonth() &&
+    d.getFullYear() === tomorrow.getFullYear()
+  )
+}
+
+export function isYesterday(date: Date | string): boolean {
+  const d = typeof date === 'string' ? new Date(date) : date
+  const yesterday = new Date()
+  yesterday.setDate(yesterday.getDate() - 1)
+  return (
+    d.getDate() === yesterday.getDate() &&
+    d.getMonth() === yesterday.getMonth() &&
+    d.getFullYear() === yesterday.getFullYear()
+  )
+}
+
+export function getDateDisplayText(date: Date | string, t?: (key: string) => string): string {
+  const d = typeof date === 'string' ? new Date(date) : date
+  
+  if (isToday(d)) {
+    return t ? t('calendar.today') || 'Today' : 'Today'
+  }
+  if (isTomorrow(d)) {
+    return t ? t('calendar.tomorrow') || 'Tomorrow' : 'Tomorrow'
+  }
+  if (isYesterday(d)) {
+    return t ? t('calendar.yesterday') || 'Yesterday' : 'Yesterday'
+  }
+  
+  return formatDate(d)
+}
+
 // Progressive leveling system constants
 export const MAX_LEVEL = 50
 export const MAX_WORLD = 10

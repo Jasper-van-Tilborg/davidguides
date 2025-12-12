@@ -49,10 +49,12 @@
     "progress": "Voortgang",
     "nextLevel": "Volgende Niveau",
     "worldMap": "Wereldkaart",
+    "worldMapDescription": "Verken ontgrendelde werelden en volg je voortgang",
     "currentWorld": "Wereld",
     "current": "Huidig",
     "required": "vereist",
     "completed": "Voltooid",
+    "locked": "Vergrendeld",
     "almostThere": "Bijna daar!"
   },
   "admin": {
@@ -102,6 +104,8 @@
     "fri": "Vr",
     "sat": "Za",
     "today": "Vandaag",
+    "tomorrow": "Morgen",
+    "yesterday": "Gisteren",
     "goToToday": "Vandaag",
     "allCompleted": "Alle gewoontes voltooid",
     "someCompleted": "Sommige gewoontes voltooid",
@@ -121,6 +125,21 @@
     "selectFile": "Selecteer Bestand",
     "importSuccess": "Import Succesvol!",
     "importFailed": "Import Mislukt"
+  },
+  "notifications": {
+    "title": "Push Notificaties",
+    "description": "Ontvang herinneringen en prestatie notificaties",
+    "status": "Status",
+    "enabled": "Ingeschakeld",
+    "notEnabled": "Niet Ingeschakeld",
+    "denied": "Geweigerd",
+    "enable": "Notificaties Inschakelen",
+    "requesting": "Aanvragen...",
+    "deniedHelp": "Toestemming geweigerd - controleer browser instellingen",
+    "deniedInstructions": "Om notificaties in te schakelen, sta ze toe in je browser instellingen en ververs de pagina.",
+    "enabledInfo": "Je ontvangt notificaties voor prestaties, level ups en dagelijkse herinneringen.",
+    "notSupported": "Notificaties niet ondersteund",
+    "notSupportedDesc": "Je browser ondersteunt geen notificaties"
   }
 }
 

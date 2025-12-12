@@ -21,10 +21,13 @@ const config = {
           900: '#0c4a6e',
         },
         adventure: {
-          dark: '#1a1a2e',
-          purple: '#6c5ce7',
-          pink: '#fd79a8',
-          cyan: '#00d2d3',
+          dark: 'var(--color-bg)',
+          main: 'var(--color-bg-secondary)',
+          text: 'var(--color-accent)',
+          secondary: 'var(--color-accent)',
+          light: 'var(--color-text)',
+          border: 'var(--color-border)',
+          'text-secondary': 'var(--color-text-secondary)',
         }
       },
       animation: {
@@ -35,4 +38,5 @@ const config = {
   plugins: [],
 }
 module.exports = config
+
 

@@ -3,7 +3,7 @@
 import { useTranslation } from 'react-i18next'
 import { useProgress } from '@/hooks/useProgress'
 import { getXPForNextLevel, getProgressPercentage } from '@/lib/utils'
-import { Trophy, Star } from 'lucide-react'
+import { Trophy, Star, Globe } from 'lucide-react'
 import Card from '@/components/ui/Card'
 
 export default function ProgressDisplay() {
@@ -18,38 +18,43 @@ export default function ProgressDisplay() {
   const progressPercentage = getProgressPercentage(progress.total_xp)
 
   return (
-    <Card>
+    <Card className="hover-lift">
       <div className="mb-4">
-        <h2 className="text-xl sm:text-2xl font-bold mb-3 sm:mb-4">{t('adventure.title')}</h2>
+        <h2 className="text-xl sm:text-2xl font-bold mb-3 sm:mb-4 text-adventure-text">
+          {t('adventure.title')}
+        </h2>
         <div className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4 flex-wrap">
-          <div className="flex items-center gap-2">
-            <Trophy className="w-5 h-5 text-adventure-purple flex-shrink-0" />
-            <span className="text-base sm:text-lg font-semibold">
+          <div className="flex items-center gap-2 px-3 py-2 rounded-lg bg-adventure-main border border-adventure-border">
+            <Trophy className="w-5 h-5 text-adventure-text flex-shrink-0" />
+            <span className="text-base sm:text-lg font-medium text-adventure-light">
               {t('adventure.level')} {progress.level}
             </span>
           </div>
-          <div className="flex items-center gap-2">
-            <Star className="w-5 h-5 text-adventure-cyan flex-shrink-0" />
-            <span className="text-base sm:text-lg font-semibold">
+          <div className="flex items-center gap-2 px-3 py-2 rounded-lg bg-adventure-main border border-adventure-border">
+            <Star className="w-5 h-5 text-adventure-text flex-shrink-0" />
+            <span className="text-base sm:text-lg font-medium text-adventure-light">
               {progress.total_xp} {t('adventure.xp')}
             </span>
           </div>
-          <div className="text-adventure-pink text-base sm:text-lg">
-            🌍 {t('adventure.currentWorld')} {progress.current_world}
+          <div className="flex items-center gap-2 px-3 py-2 rounded-lg bg-adventure-main border border-adventure-border text-base sm:text-lg font-medium">
+            <Globe className="w-5 h-5 text-adventure-text flex-shrink-0" />
+            <span className="text-adventure-text">
+              {t('adventure.currentWorld')} {progress.current_world}
+            </span>
           </div>
         </div>
       </div>
 
       <div className="space-y-2">
-        <div className="flex justify-between text-sm text-gray-400">
-          <span>{t('adventure.progress')}</span>
-          <span className="text-xs sm:text-sm">
+        <div className="flex justify-between text-sm text-adventure-light">
+          <span className="font-medium">{t('adventure.progress')}</span>
+          <span className="text-xs sm:text-sm font-medium text-adventure-text">
             {xpForNextLevel} {t('adventure.xp')} {t('adventure.nextLevel')}
           </span>
         </div>
-        <div className="w-full bg-adventure-dark rounded-full h-3 sm:h-4 overflow-hidden">
+        <div className="w-full rounded-full bg-adventure-dark border border-adventure-border h-1">
           <div
-            className="h-full bg-gradient-to-r from-adventure-purple to-adventure-pink transition-all duration-500"
+            className="h-full rounded-full bg-adventure-text transition-all duration-300"
             style={{ width: `${progressPercentage}%` }}
           />
         </div>

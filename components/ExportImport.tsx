@@ -100,10 +100,10 @@ export default function ExportImport() {
         {/* Export Section */}
         <div>
           <h3 className="text-lg font-semibold mb-3 flex items-center gap-2">
-            <Download className="w-5 h-5 text-adventure-cyan" />
+            <Download className="w-5 h-5 text-adventure-secondary" />
             {t('settings.export') || 'Export Data'}
           </h3>
-          <p className="text-sm text-gray-400 mb-4">
+          <p className="text-sm text-adventure-light/70 mb-4">
             {t('settings.exportDescription') || 'Download all your habits, progress, and achievements as a JSON file.'}
           </p>
           <Button
@@ -118,23 +118,23 @@ export default function ExportImport() {
         </div>
 
         {/* Import Section */}
-        <div className="border-t border-adventure-purple/20 pt-6">
+        <div className="border-t border-adventure-main/20 pt-6">
           <h3 className="text-lg font-semibold mb-3 flex items-center gap-2">
-            <Upload className="w-5 h-5 text-adventure-purple" />
+            <Upload className="w-5 h-5 text-adventure-main" />
             {t('settings.import') || 'Import Data'}
           </h3>
-          <p className="text-sm text-gray-400 mb-4">
+          <p className="text-sm text-adventure-light/70 mb-4">
             {t('settings.importDescription') || 'Import habits, progress, and achievements from a JSON file.'}
           </p>
 
           {/* Merge Mode Toggle */}
-          <div className="mb-4 p-3 bg-adventure-dark/50 rounded-lg">
+          <div className="mb-4 p-3 rounded-lg bg-adventure-dark/50">
             <label className="flex items-center gap-3 cursor-pointer touch-manipulation">
               <input
                 type="checkbox"
                 checked={mergeMode}
                 onChange={(e) => setMergeMode(e.target.checked)}
-                className="w-5 h-5 rounded border-adventure-purple/30 bg-adventure-dark text-adventure-purple focus:ring-adventure-purple"
+                className="w-5 h-5 rounded-lg border-adventure-main/30 bg-adventure-dark text-adventure-main focus:ring-adventure-main"
               />
               <span className="text-sm">
                 {t('settings.mergeMode') || 'Merge with existing data (unchecked = replace all)'}
@@ -168,24 +168,24 @@ export default function ExportImport() {
 
         {/* Import Result */}
         {importResult && (
-          <div className={`p-4 rounded-lg border-2 ${
+          <div className={`p-4 rounded-xl border-2 ${
             importResult.success
-              ? 'bg-adventure-cyan/10 border-adventure-cyan/50'
+              ? 'bg-adventure-secondary/10 border-adventure-secondary/50'
               : 'bg-red-500/10 border-red-500/50'
           }`}>
             <div className="flex items-start gap-3">
               {importResult.success ? (
-                <CheckCircle className="w-5 h-5 text-adventure-cyan flex-shrink-0 mt-0.5" />
+                <CheckCircle className="w-5 h-5 text-adventure-secondary flex-shrink-0 mt-0.5" />
               ) : (
                 <XCircle className="w-5 h-5 text-red-400 flex-shrink-0 mt-0.5" />
               )}
               <div className="flex-1">
                 {importResult.success ? (
                   <>
-                    <p className="font-semibold text-adventure-cyan mb-2">
+                    <p className="font-semibold text-adventure-secondary mb-2">
                       {t('settings.importSuccess') || 'Import Successful!'}
                     </p>
-                    <div className="text-sm text-gray-300 space-y-1">
+                    <div className="text-sm text-adventure-light/70 space-y-1">
                       {importResult.imported.habits > 0 && (
                         <p>• {importResult.imported.habits} {t('habits.title') || 'habits'}</p>
                       )}
@@ -203,7 +203,7 @@ export default function ExportImport() {
                       {t('settings.importFailed') || 'Import Failed'}
                     </p>
                     {importResult.errors.length > 0 && (
-                      <ul className="text-sm text-gray-300 list-disc list-inside">
+                      <ul className="text-sm text-adventure-light/70 list-disc list-inside">
                         {importResult.errors.map((error, i) => (
                           <li key={i}>{error}</li>
                         ))}
@@ -219,4 +219,5 @@ export default function ExportImport() {
     </Card>
   )
 }
+
 

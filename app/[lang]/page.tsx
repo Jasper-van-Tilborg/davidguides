@@ -24,3 +24,7 @@ export default async function HomePage({ params }: Props) {
   return <HomeContent lang={lang} />
 }
 
+
+
+
+

@@ -21,3 +21,7 @@ export default async function AdventurePage({ params }: Props) {
   return <AdventureContent />
 }
 
+
+
+
+

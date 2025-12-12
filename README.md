@@ -93,18 +93,27 @@ De production server draait op [http://localhost:3001](http://localhost:3001).
 │   ├── HomeContent.tsx   # Homepage content
 │   ├── DashboardContent.tsx
 │   ├── AdventureContent.tsx
+│   ├── WorldMap.tsx      # Verbeterde wereldkaart component
 │   ├── HabitCard.tsx     # Habit display card
 │   ├── ProgressDisplay.tsx
 │   ├── AddHabitModal.tsx
+│   ├── NotificationSettings.tsx  # Notification instellingen
 │   └── LanguageSwitcher.tsx
 ├── hooks/                # Custom React hooks
 │   ├── useAuth.ts        # Authentication hook
 │   ├── useHabits.ts      # Habits management hook
-│   └── useProgress.ts    # Progress/XP tracking hook
+│   ├── useProgress.ts    # Progress/XP tracking hook
+│   ├── useAchievements.ts # Achievements hook
+│   └── useNotifications.ts # Notifications hook
 ├── lib/                   # Utilities
 │   ├── storage.ts        # LocalStorage client & auth
 │   ├── i18n.ts           # i18n configuration (react-i18next)
-│   └── utils.ts          # Helper functions
+│   ├── utils.ts          # Helper functions
+│   ├── achievements.ts   # Achievements systeem
+│   ├── habitTemplates.ts # Habit templates
+│   ├── exportImport.ts   # Export/Import functionaliteit
+│   ├── notifications.ts  # Push notifications
+│   └── backgroundSync.ts # Background sync systeem
 ├── locales/              # Translation files (react-i18next)
 │   ├── en.json
 │   └── nl.json
@@ -127,7 +136,7 @@ De production server draait op [http://localhost:3001](http://localhost:3001).
 
 - [x] Habit CRUD operaties (via LocalStorage)
 - [x] Authenticatie systeem (LocalStorage-based)
-- [x] XP en level systeem (100 XP per level)
+- [x] XP en level systeem (progressieve leveling met exponentiële groei)
 - [x] Wereld unlock systeem (elke 5 levels)
 - [x] Dagelijkse check-ins systeem
 - [x] Streak tracking
@@ -140,16 +149,23 @@ De production server draait op [http://localhost:3001](http://localhost:3001).
 - [x] Touch-friendly interfaces (44px minimum touch targets)
 - [x] Responsive layouts voor alle schermformaten
 - [x] Language switching zonder page reload
+- [x] **Verbeterde Wereldkaart UI** - Visueel aantrekkelijke wereldkaart met thema's, animaties en progress indicators
+- [x] **Achievements/Badges Systeem** - Volledig achievements systeem met verschillende categorieën en XP beloningen
+- [x] **Admin Dashboard** - Beheer interface voor habit templates, achievements en vertalingen
+- [x] **Habit Templates** - Vooraf gedefinieerde habit templates met categorieën
+- [x] **Export/Import Functionaliteit** - Volledige data export/import met merge opties
+- [x] **Push Notifications** - Browser notificaties voor achievements, level ups, en herinneringen
+- [x] **Background Sync** - Offline data synchronisatie queue systeem
 
 ## 🎯 Toekomstige Features
 
-- [ ] Wereldkaart UI component (visuele verbetering)
-- [ ] Achievements/Badges systeem
-- [ ] Admin dashboard
-- [ ] Habit templates
-- [ ] Export/Import functionaliteit
-- [ ] Push notifications
-- [ ] Background sync
+- [x] Wereldkaart UI component (visuele verbetering) ✅
+- [x] Achievements/Badges systeem ✅
+- [x] Admin dashboard ✅
+- [x] Habit templates ✅
+- [x] Export/Import functionaliteit ✅
+- [x] Push notifications ✅
+- [x] Background sync ✅
 
 ## 📱 Mobile Optimizations
 
@@ -243,10 +259,42 @@ Alle data wordt automatisch gesynchroniseerd en werkt volledig offline.
 ## 🎮 Gamification Systeem
 
 - **XP Rewards**: Elke gewoonte geeft 5-50 XP (configureerbaar)
-- **Level System**: 100 XP per level
+- **Progressieve Leveling**: Exponentiële XP groei (15% meer per level)
 - **World Unlock**: Elke 5 levels een nieuwe wereld
 - **Streak Tracking**: Aantal dagen op rij een gewoonte voltooien
 - **Progress Bar**: Visuele voortgang naar volgende level
+- **Achievements**: Verschillende categorieën (streaks, completions, levels, worlds)
+- **Verbeterde Wereldkaart**: Visueel aantrekkelijke wereldkaart met thema's en animaties
+
+## 🔔 Push Notifications
+
+De app ondersteunt browser push notifications voor:
+
+- **Achievement Unlocks**: Notificaties wanneer je een achievement ontgrendelt
+- **Level Ups**: Notificaties wanneer je een level behaalt
+- **World Unlocks**: Notificaties wanneer je een nieuwe wereld ontgrendelt
+- **Habit Reminders**: Dagelijkse herinneringen voor gewoontes (toekomstig)
+- **Daily Reminders**: Overzicht van voltooide gewoontes
+
+### Notificaties Inschakelen
+
+1. Ga naar de instellingen pagina (toekomstig) of gebruik de `NotificationSettings` component
+2. Klik op "Enable Notifications"
+3. Sta notificaties toe in je browser
+4. Notificaties worden automatisch getoond bij relevante events
+
+**Let op**: Notificaties werken alleen als de app is geïnstalleerd als PWA en de gebruiker toestemming heeft gegeven.
+
+## 🔄 Background Sync
+
+De app heeft een background sync systeem voor offline data synchronisatie:
+
+- **Offline Queue**: Data wijzigingen worden in een queue opgeslagen wanneer offline
+- **Automatische Sync**: Queue wordt automatisch verwerkt wanneer de app weer online is
+- **Retry Logic**: Automatische retry met maximum aantal pogingen
+- **Service Worker Integration**: Gebruikt Background Sync API waar beschikbaar
+
+Background sync wordt automatisch geïnitialiseerd bij app start en werkt op de achtergrond.
 
 ## 📝 Guides Toegepast
 

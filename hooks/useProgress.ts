@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react'
 import { storage } from '@/lib/storage'
 import { checkAchievements } from '@/lib/achievements'
+import { showLevelUp, showWorldUnlocked } from '@/lib/notifications'
 import type { UserProgress } from '@/types'
 
 export function useProgress() {
@@ -38,6 +39,14 @@ export function useProgress() {
     if (oldProgress) {
       const levelChanged = updated.level > oldProgress.level
       const worldChanged = updated.current_world > oldProgress.current_world
+      
+      // Show notifications for level up and world unlock
+      if (levelChanged) {
+        showLevelUp(updated.level)
+      }
+      if (worldChanged) {
+        showWorldUnlocked(updated.current_world)
+      }
       
       if (levelChanged || worldChanged) {
         setTimeout(() => {

@@ -101,41 +101,43 @@ export default function HabitCard({ habit }: HabitCardProps) {
   }
 
   return (
-    <Card className="relative">
+    <Card className="relative" hover>
       <div className="flex justify-between items-start mb-4 gap-3">
         <div className="flex-1 min-w-0">
-          <h3 className="text-lg sm:text-xl font-semibold mb-2 break-words">{habit.name}</h3>
+          <h3 className="text-lg sm:text-xl font-medium mb-2 break-words text-adventure-text">
+            {habit.name}
+          </h3>
           {habit.description && (
-            <p className="text-gray-400 text-sm mb-2 break-words">{habit.description}</p>
+            <p className="text-adventure-text-secondary text-sm mb-2 break-words leading-relaxed">
+              {habit.description}
+            </p>
           )}
         </div>
         <button
           onClick={handleDelete}
-          className="text-gray-400 hover:text-red-400 transition-colors p-2 touch-manipulation flex-shrink-0"
+          className="text-adventure-text-secondary hover:text-adventure-light transition-opacity p-2 rounded-lg touch-manipulation flex-shrink-0"
           aria-label="Delete habit"
         >
-          <Trash2 className="w-5 h-5" />
+          <Trash2 className="w-4 h-4" />
         </button>
       </div>
 
-      <div className="flex items-center justify-between mb-4 flex-wrap gap-2">
-        <div className="flex items-center gap-3 sm:gap-4 text-sm">
-          <div className="text-adventure-purple font-semibold">
-            +{habit.xp_reward} {t('adventure.xp')}
-          </div>
-          {streak > 0 && (
-            <div className="text-adventure-cyan">
-              🔥 {streak} {t('habits.days')}
-            </div>
-          )}
-        </div>
+      <div className="flex items-center gap-4 mb-4 text-sm">
+        <span className="text-adventure-text">
+          +{habit.xp_reward} {t('adventure.xp')}
+        </span>
+        {streak > 0 && (
+          <span className="text-adventure-text">
+            {streak} {t('habits.days')}
+          </span>
+        )}
       </div>
 
       <Button
         onClick={handleComplete}
         disabled={isCompleting}
         variant={isCompleted ? 'secondary' : 'primary'}
-        className="w-full touch-manipulation min-h-[44px] text-base"
+        className="w-full touch-manipulation min-h-[44px]"
       >
         {isCompleted ? (
           <>

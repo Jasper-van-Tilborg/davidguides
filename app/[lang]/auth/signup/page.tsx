@@ -21,3 +21,7 @@ export default async function SignUpPage({ params }: Props) {
   return <SignUpForm />
 }
 
+
+
+
+

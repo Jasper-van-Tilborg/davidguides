@@ -12,6 +12,7 @@ import type { HabitTemplate, Achievement } from '@/types'
 import Card from '@/components/ui/Card'
 import Button from '@/components/ui/Button'
 import { Settings, Sparkles, Trophy, Globe, Plus, Trash2, Edit } from 'lucide-react'
+import { getIconComponent } from '@/lib/iconHelper'
 
 export default function AdminContent() {
   const { t } = useTranslation()
@@ -63,22 +64,22 @@ export default function AdminContent() {
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-6 md:py-8">
         <div className="mb-6 sm:mb-8">
           <div className="flex items-center gap-3 mb-4">
-            <Settings className="w-8 h-8 text-adventure-purple" />
+            <Settings className="w-8 h-8 text-adventure-main" />
             <h1 className="text-2xl sm:text-3xl font-bold">{t('admin.title')}</h1>
           </div>
-          <p className="text-gray-400 text-sm sm:text-base">
+          <p className="text-adventure-light/70 text-sm sm:text-base">
             {t('admin.description') || 'Manage habit templates, achievements, and translations'}
           </p>
         </div>
 
         {/* Tabs */}
-        <div className="flex flex-wrap gap-2 mb-6 border-b border-adventure-purple/20 pb-4">
+        <div className="flex flex-wrap gap-2 mb-6 border-b border-adventure-main/20 pb-4">
           <button
             onClick={() => setActiveTab('templates')}
             className={`px-4 py-2 rounded-lg font-medium transition-colors touch-manipulation min-h-[44px] ${
               activeTab === 'templates'
-                ? 'bg-adventure-purple text-white'
-                : 'bg-adventure-dark/50 text-gray-300 hover:bg-adventure-dark/70'
+                ? 'bg-adventure-main text-adventure-light'
+                : 'bg-adventure-dark/50 text-adventure-light/70 hover:bg-adventure-dark/70'
             }`}
           >
             <Sparkles className="w-4 h-4 inline mr-2" />
@@ -88,8 +89,8 @@ export default function AdminContent() {
             onClick={() => setActiveTab('achievements')}
             className={`px-4 py-2 rounded-lg font-medium transition-colors touch-manipulation min-h-[44px] ${
               activeTab === 'achievements'
-                ? 'bg-adventure-purple text-white'
-                : 'bg-adventure-dark/50 text-gray-300 hover:bg-adventure-dark/70'
+                ? 'bg-adventure-main text-adventure-light'
+                : 'bg-adventure-dark/50 text-adventure-light/70 hover:bg-adventure-dark/70'
             }`}
           >
             <Trophy className="w-4 h-4 inline mr-2" />
@@ -99,8 +100,8 @@ export default function AdminContent() {
             onClick={() => setActiveTab('translations')}
             className={`px-4 py-2 rounded-lg font-medium transition-colors touch-manipulation min-h-[44px] ${
               activeTab === 'translations'
-                ? 'bg-adventure-purple text-white'
-                : 'bg-adventure-dark/50 text-gray-300 hover:bg-adventure-dark/70'
+                ? 'bg-adventure-main text-adventure-light'
+                : 'bg-adventure-dark/50 text-adventure-light/70 hover:bg-adventure-dark/70'
             }`}
           >
             <Globe className="w-4 h-4 inline mr-2" />
@@ -122,23 +123,28 @@ export default function AdminContent() {
               {templates.map((template) => (
                 <div
                   key={template.id}
-                  className="p-4 bg-adventure-dark/50 rounded-lg border border-adventure-purple/20"
+                  className="p-4 bg-adventure-dark/50 rounded-lg border border-adventure-main/20"
                 >
                   <div className="flex items-start justify-between mb-2">
                     <div className="flex items-center gap-2">
-                      <span className="text-2xl">{template.icon || '📝'}</span>
+                      {(() => {
+                        const IconComponent = getIconComponent(template.icon || 'fileText')
+                        return IconComponent ? (
+                          <IconComponent className="w-6 h-6 text-adventure-text" />
+                        ) : null
+                      })()}
                       <h3 className="font-semibold">{template.name}</h3>
                     </div>
                     {!template.is_default && (
-                      <button className="text-gray-400 hover:text-red-400 p-1 touch-manipulation">
+                      <button className="text-adventure-light/70 hover:text-red-400 p-1 rounded-lg touch-manipulation">
                         <Trash2 className="w-4 h-4" />
                       </button>
                     )}
                   </div>
                   {template.description && (
-                    <p className="text-sm text-gray-400 mb-2">{template.description}</p>
+                    <p className="text-sm text-adventure-light/70 mb-2">{template.description}</p>
                   )}
-                  <div className="text-sm text-adventure-cyan">
+                  <div className="text-sm text-adventure-secondary">
                     +{template.xp_reward} {t('adventure.xp')} • {template.category}
                   </div>
                 </div>
@@ -161,16 +167,21 @@ export default function AdminContent() {
               {achievements.map((achievement) => (
                 <div
                   key={achievement.id}
-                  className="p-4 bg-adventure-dark/50 rounded-lg border border-adventure-purple/20"
+                  className="p-4 bg-adventure-dark/50 rounded-lg border border-adventure-main/20"
                 >
                   <div className="flex items-start justify-between mb-2">
                     <div className="flex items-center gap-2">
-                      <span className="text-2xl">{achievement.icon || '🏆'}</span>
+                      {(() => {
+                        const IconComponent = getIconComponent(achievement.icon || 'trophy')
+                        return IconComponent ? (
+                          <IconComponent className="w-6 h-6 text-adventure-text" />
+                        ) : null
+                      })()}
                       <h3 className="font-semibold">{achievement.name}</h3>
                     </div>
                   </div>
-                  <p className="text-sm text-gray-400 mb-2">{achievement.description}</p>
-                  <div className="text-sm text-adventure-cyan">
+                  <p className="text-sm text-adventure-light/70 mb-2">{achievement.description}</p>
+                  <div className="text-sm text-adventure-secondary">
                     +{achievement.xp_reward} {t('adventure.xp')} • {achievement.type} • {achievement.category}
                   </div>
                   <div className="text-xs text-gray-500 mt-2">
@@ -186,7 +197,7 @@ export default function AdminContent() {
         {activeTab === 'translations' && (
           <Card>
             <h2 className="text-xl font-semibold mb-4">{t('admin.translations')}</h2>
-            <p className="text-gray-400">
+            <p className="text-adventure-light/70">
               {t('admin.translationsDescription') || 'Translation management coming soon. Currently using react-i18next with JSON files.'}
             </p>
           </Card>

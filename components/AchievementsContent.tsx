@@ -72,14 +72,16 @@ export default function AchievementsContent() {
         {/* Header */}
         <div className="mb-6 sm:mb-8">
           <div className="flex items-center gap-3 mb-4">
-            <Trophy className="w-8 h-8 text-adventure-purple" />
-            <h1 className="text-2xl sm:text-3xl font-bold">
+            <Trophy className="w-8 h-8 text-adventure-text" />
+            <h1 className="text-2xl sm:text-3xl font-medium text-adventure-text">
               {t('achievements.title') || 'Achievements'}
             </h1>
           </div>
           
-          <div className="text-sm sm:text-base text-gray-300">
-            {unlockedCount} / {totalCount} {t('achievements.unlocked') || 'unlocked'}
+          <div className="px-4 py-2 rounded-lg bg-adventure-main border border-adventure-border inline-block">
+            <span className="text-sm sm:text-base text-adventure-light font-medium">
+              {unlockedCount} / {totalCount} {t('achievements.unlocked') || 'unlocked'}
+            </span>
           </div>
         </div>
 
@@ -89,10 +91,10 @@ export default function AchievementsContent() {
             <button
               key={category}
               onClick={() => setSelectedCategory(category)}
-              className={`px-4 py-2 rounded-lg font-medium transition-colors touch-manipulation min-h-[44px] ${
+              className={`px-4 py-2 rounded-lg font-medium transition-opacity touch-manipulation min-h-[44px] ${
                 selectedCategory === category
-                  ? 'bg-adventure-purple text-white'
-                  : 'bg-adventure-dark/50 text-gray-300 hover:bg-adventure-dark/70'
+                  ? 'bg-adventure-text text-adventure-dark'
+                  : 'bg-adventure-main border border-adventure-border text-adventure-text-secondary hover:text-adventure-light'
               }`}
             >
               {t(`achievements.categories.${category}`) || category}
@@ -103,7 +105,7 @@ export default function AchievementsContent() {
         {/* Achievements Grid */}
         {filteredAchievements.length === 0 ? (
           <div className="text-center py-12">
-            <p className="text-gray-400 text-lg">
+            <p className="text-adventure-text-secondary text-lg">
               {t('achievements.noAchievements') || 'No achievements found'}
             </p>
           </div>
@@ -131,4 +133,5 @@ export default function AchievementsContent() {
     </div>
   )
 }
+
 

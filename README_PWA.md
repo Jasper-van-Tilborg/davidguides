@@ -156,3 +156,7 @@ Het manifest wordt automatisch geserveerd op `/manifest.webmanifest` door Next.j
 - Check service worker is geregistreerd
 - Test op echte device (niet alleen emulator)
 
+
+
+
+

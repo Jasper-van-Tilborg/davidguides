@@ -31,23 +31,23 @@ export default function LanguageSwitcher() {
 
   return (
     <div className="flex items-center gap-2">
-      <Globe className="w-5 h-5 text-gray-400" />
+      <Globe className="w-5 h-5 text-adventure-light/70" />
       <button
         onClick={() => changeLanguage('en')}
-        className={`px-3 py-1 rounded ${
+        className={`px-3 py-1 rounded-lg ${
           currentLang === 'en'
-            ? 'bg-adventure-purple text-white'
-            : 'text-gray-400 hover:text-white'
+            ? 'bg-adventure-main text-adventure-light'
+            : 'text-adventure-light/70 hover:text-adventure-light'
         }`}
       >
         EN
       </button>
       <button
         onClick={() => changeLanguage('nl')}
-        className={`px-3 py-1 rounded ${
+        className={`px-3 py-1 rounded-lg ${
           currentLang === 'nl'
-            ? 'bg-adventure-purple text-white'
-            : 'text-gray-400 hover:text-white'
+            ? 'bg-adventure-main text-adventure-light'
+            : 'text-adventure-light/70 hover:text-adventure-light'
         }`}
       >
         NL

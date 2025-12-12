@@ -93,7 +93,7 @@ export default function DayCalendar({ selectedDate, onDateSelect }: DayCalendarP
   const weekDates = getWeekDates()
 
   return (
-    <div className="bg-adventure-dark/50 rounded-lg border border-adventure-purple/20 overflow-hidden">
+    <div className="bg-adventure-dark/60 backdrop-blur-sm rounded-xl border border-adventure-main/30 overflow-hidden shadow-lg">
       {/* Main Day View */}
       <div
         ref={containerRef}
@@ -103,18 +103,18 @@ export default function DayCalendar({ selectedDate, onDateSelect }: DayCalendarP
         onTouchEnd={onTouchEnd}
       >
         {/* Selected Date Display */}
-        <div className="p-6 sm:p-8 text-center bg-gradient-to-br from-adventure-purple/20 to-adventure-pink/10">
+        <div className="p-6 sm:p-8 text-center bg-gradient-to-br from-adventure-main/20 to-adventure-secondary/10 border-b border-adventure-main/30">
           <div className="flex items-center justify-center gap-2 mb-2">
-            <CalendarIcon className="w-5 h-5 text-adventure-purple" />
-            <span className="text-sm text-gray-400">
+            <CalendarIcon className="w-5 h-5 text-adventure-main drop-shadow-lg" />
+            <span className="text-sm text-adventure-light/80 font-medium">
               {selectedDate.toLocaleDateString('en-US', { weekday: 'long' })}
             </span>
           </div>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-2">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-2 text-adventure-text">
             {formatDate(selectedDate)}
           </h2>
           {isToday(selectedDate) && (
-            <span className="inline-block px-3 py-1 bg-adventure-cyan/20 text-adventure-cyan rounded-full text-xs sm:text-sm font-semibold mt-2">
+            <span className="inline-block px-3 py-1.5 bg-adventure-secondary/30 border border-adventure-secondary/50 text-adventure-secondary rounded-full text-xs sm:text-sm font-bold mt-2 shadow-lg">
               {t('calendar.today') || 'Today'}
             </span>
           )}
@@ -123,16 +123,16 @@ export default function DayCalendar({ selectedDate, onDateSelect }: DayCalendarP
           {totalHabits > 0 && (
             <div className="mt-4">
               <div className="flex justify-between items-center mb-2 text-sm">
-                <span className="text-gray-400">
+                <span className="text-adventure-light/80 font-medium">
                   {completedCount} / {totalHabits} {t('habits.completed') || 'completed'}
                 </span>
-                <span className="text-adventure-purple font-semibold">
+                <span className="px-2 py-1 bg-adventure-main/20 rounded border border-adventure-main/30 text-adventure-main font-bold">
                   {completionPercentage}%
                 </span>
               </div>
-              <div className="w-full bg-adventure-dark/50 rounded-full h-2 sm:h-3 overflow-hidden">
+              <div className="w-full bg-adventure-dark/80 rounded-full h-3 sm:h-4 overflow-hidden border border-adventure-main/20 shadow-inner">
                 <div
-                  className="h-full bg-gradient-to-r from-adventure-purple to-adventure-pink transition-all duration-500"
+                  className="h-full bg-gradient-to-r from-adventure-main to-adventure-secondary transition-all duration-700 ease-out"
                   style={{ width: `${completionPercentage}%` }}
                 />
               </div>
@@ -143,7 +143,7 @@ export default function DayCalendar({ selectedDate, onDateSelect }: DayCalendarP
         {/* Navigation Arrows */}
         <button
           onClick={() => navigateDay(-1)}
-          className="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 p-2 sm:p-3 bg-adventure-dark/80 hover:bg-adventure-dark rounded-full text-white transition-all touch-manipulation z-10 shadow-lg"
+          className="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 p-2 sm:p-3 bg-adventure-dark/90 backdrop-blur-sm hover:bg-adventure-main/20 border border-adventure-main/30 rounded-full text-adventure-light transition-all duration-200 touch-manipulation z-10 shadow-lg hover:scale-110"
           aria-label="Previous day"
         >
           <ChevronLeft className="w-5 h-5 sm:w-6 sm:h-6" />
@@ -151,7 +151,7 @@ export default function DayCalendar({ selectedDate, onDateSelect }: DayCalendarP
         
         <button
           onClick={() => navigateDay(1)}
-          className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 p-2 sm:p-3 bg-adventure-dark/80 hover:bg-adventure-dark rounded-full text-white transition-all touch-manipulation z-10 shadow-lg"
+          className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 p-2 sm:p-3 bg-adventure-dark/90 backdrop-blur-sm hover:bg-adventure-main/20 border border-adventure-main/30 rounded-full text-adventure-light transition-all duration-200 touch-manipulation z-10 shadow-lg hover:scale-110"
           aria-label="Next day"
         >
           <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6" />
@@ -164,7 +164,7 @@ export default function DayCalendar({ selectedDate, onDateSelect }: DayCalendarP
               key={date.toISOString()}
               className={`h-1.5 rounded-full transition-all ${
                 index === 3 // Center (selected day)
-                  ? 'w-6 bg-adventure-purple'
+                  ? 'w-6 bg-adventure-main'
                   : 'w-1.5 bg-gray-600'
               }`}
             />
@@ -173,15 +173,15 @@ export default function DayCalendar({ selectedDate, onDateSelect }: DayCalendarP
       </div>
 
       {/* Week View - Compact Date Selector */}
-      <div className="p-4 bg-adventure-dark/30 border-t border-adventure-purple/20">
+      <div className="p-4 bg-adventure-dark/40 backdrop-blur-sm border-t border-adventure-main/30">
         <div className="flex items-center justify-between mb-3">
           <button
             onClick={goToToday}
-            className="px-3 py-1.5 bg-adventure-purple/20 hover:bg-adventure-purple/30 text-adventure-purple rounded-lg text-xs sm:text-sm font-medium transition-colors touch-manipulation"
+            className="px-3 py-1.5 bg-adventure-main/20 hover:bg-adventure-main/30 border border-adventure-main/30 text-adventure-main rounded-lg text-xs sm:text-sm font-semibold transition-all duration-200 touch-manipulation hover:scale-105"
           >
             {t('calendar.goToToday') || 'Today'}
           </button>
-          <span className="text-xs text-gray-400">
+          <span className="text-xs text-adventure-light/60 font-medium">
             {t('calendar.swipeToNavigate') || 'Swipe to navigate'}
           </span>
         </div>
@@ -199,28 +199,28 @@ export default function DayCalendar({ selectedDate, onDateSelect }: DayCalendarP
               <button
                 key={dateStr}
                 onClick={() => onDateSelect(date)}
-                className={`flex-shrink-0 w-16 sm:w-20 p-3 rounded-lg transition-all touch-manipulation ${
+                className={`flex-shrink-0 w-16 sm:w-20 p-3 rounded-lg transition-all duration-200 touch-manipulation border ${
                   isSelected
-                    ? 'bg-adventure-purple text-white scale-105 shadow-lg'
+                    ? 'bg-adventure-main text-adventure-light scale-105 shadow-glow border-adventure-main'
                     : isTodayDate
-                    ? 'bg-adventure-cyan/20 border-2 border-adventure-cyan'
-                    : 'bg-adventure-dark/50 hover:bg-adventure-dark/70'
+                    ? 'bg-adventure-secondary/20 border-2 border-adventure-secondary hover:border-adventure-secondary/70'
+                    : 'bg-adventure-dark/60 backdrop-blur-sm border-adventure-main/20 hover:bg-adventure-dark/80 hover:border-adventure-main/30 hover:scale-105'
                 }`}
               >
-                <div className="text-xs text-gray-400 mb-1">
+                <div className="text-xs text-adventure-light/70 mb-1 font-medium">
                   {date.toLocaleDateString('en-US', { weekday: 'short' })}
                 </div>
-                <div className="text-lg sm:text-xl font-bold mb-1">
+                <div className={`text-lg sm:text-xl font-bold mb-1 ${isSelected ? 'text-adventure-light' : 'text-adventure-text'}`}>
                   {date.getDate()}
                 </div>
                 {totalHabits > 0 && (
                   <div className="flex gap-0.5 justify-center">
                     {isAllCompleted ? (
-                      <div className="w-full h-1 bg-adventure-cyan rounded" />
+                      <div className="w-full h-1.5 bg-adventure-secondary rounded shadow-sm" />
                     ) : completedCount > 0 ? (
-                      <div className="w-full h-1 bg-adventure-purple/60 rounded" />
+                      <div className="w-full h-1.5 bg-adventure-main/70 rounded" />
                     ) : (
-                      <div className="w-full h-1 bg-gray-700 rounded" />
+                      <div className="w-full h-1.5 bg-gray-700 rounded" />
                     )}
                   </div>
                 )}
@@ -232,4 +232,5 @@ export default function DayCalendar({ selectedDate, onDateSelect }: DayCalendarP
     </div>
   )
 }
+
 

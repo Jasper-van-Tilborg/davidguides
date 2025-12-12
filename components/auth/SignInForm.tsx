@@ -47,7 +47,7 @@ export default function SignInForm() {
     <div className="min-h-screen flex items-center justify-center p-4 sm:p-6 pb-20">
       <div className="w-full max-w-md">
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6 sm:mb-8">
-          <h1 className="text-2xl sm:text-3xl font-bold bg-gradient-to-r from-adventure-purple to-adventure-pink bg-clip-text text-transparent">
+          <h1 className="text-2xl sm:text-3xl font-bold text-adventure-main">
             {t('common.appName')}
           </h1>
           <LanguageSwitcher />
@@ -57,7 +57,7 @@ export default function SignInForm() {
           <h2 className="text-xl sm:text-2xl font-semibold mb-6">{t('auth.signIn')}</h2>
 
           {error && (
-            <div className="mb-4 p-3 bg-red-500/20 border border-red-500/50 rounded text-red-300 text-sm">
+            <div className="mb-4 p-3 rounded-lg bg-red-500/20 border border-red-500/50 text-red-300 text-sm">
               {error}
             </div>
           )}
@@ -75,7 +75,7 @@ export default function SignInForm() {
                 required
                 autoComplete="email"
                 inputMode="email"
-                className="w-full px-4 py-3 bg-adventure-dark border border-adventure-purple/30 rounded-lg focus:outline-none focus:border-adventure-purple text-white text-base touch-manipulation"
+                className="w-full px-4 py-3 bg-adventure-dark border border-adventure-main/30 rounded-lg focus:outline-none focus:border-adventure-main text-adventure-light text-base touch-manipulation"
                 placeholder="you@example.com"
               />
             </div>
@@ -91,7 +91,7 @@ export default function SignInForm() {
                 onChange={(e) => setPassword(e.target.value)}
                 required
                 autoComplete="current-password"
-                className="w-full px-4 py-3 bg-adventure-dark border border-adventure-purple/30 rounded-lg focus:outline-none focus:border-adventure-purple text-white text-base touch-manipulation"
+                className="w-full px-4 py-3 bg-adventure-dark border border-adventure-main/30 rounded-lg focus:outline-none focus:border-adventure-main text-adventure-light text-base touch-manipulation"
               />
             </div>
 
@@ -104,11 +104,11 @@ export default function SignInForm() {
             </Button>
           </form>
 
-          <div className="mt-6 text-center text-sm text-gray-400">
+          <div className="mt-6 text-center text-sm text-adventure-light/70">
             {t('auth.noAccount')}{' '}
             <Link 
               href={`/${validLang}/auth/signup`} 
-              className="text-adventure-purple hover:text-adventure-pink touch-manipulation"
+              className="text-adventure-main hover:text-adventure-text touch-manipulation"
             >
               {t('auth.signUp')}
             </Link>

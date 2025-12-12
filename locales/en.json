@@ -49,10 +49,12 @@
     "progress": "Progress",
     "nextLevel": "Next Level",
     "worldMap": "World Map",
+    "worldMapDescription": "Explore unlocked worlds and track your progress",
     "currentWorld": "World",
     "current": "Current",
     "required": "required",
     "completed": "Completed",
+    "locked": "Locked",
     "almostThere": "Almost there!"
   },
   "admin": {
@@ -102,6 +104,8 @@
     "fri": "Fri",
     "sat": "Sat",
     "today": "Today",
+    "tomorrow": "Tomorrow",
+    "yesterday": "Yesterday",
     "goToToday": "Today",
     "allCompleted": "All habits completed",
     "someCompleted": "Some habits completed",
@@ -121,6 +125,21 @@
     "selectFile": "Select File",
     "importSuccess": "Import Successful!",
     "importFailed": "Import Failed"
+  },
+  "notifications": {
+    "title": "Push Notifications",
+    "description": "Get reminders and achievement notifications",
+    "status": "Status",
+    "enabled": "Enabled",
+    "notEnabled": "Not Enabled",
+    "denied": "Denied",
+    "enable": "Enable Notifications",
+    "requesting": "Requesting...",
+    "deniedHelp": "Permission denied - check browser settings",
+    "deniedInstructions": "To enable notifications, please allow them in your browser settings and refresh the page.",
+    "enabledInfo": "You will receive notifications for achievements, level ups, and daily reminders.",
+    "notSupported": "Notifications not supported",
+    "notSupportedDesc": "Your browser does not support notifications"
   }
 }
 

@@ -102,19 +102,19 @@ export default function Calendar({ selectedDate, onDateSelect }: CalendarProps) 
   ]
 
   return (
-    <div className="bg-adventure-dark/50 rounded-lg border border-adventure-purple/20 p-4 sm:p-6">
+    <div className="bg-adventure-dark/50 rounded-lg border border-adventure-main/20 p-4 sm:p-6">
       {/* Month Navigation */}
       <div className="flex items-center justify-between mb-4">
         <button
           onClick={() => navigateMonth('prev')}
-          className="p-2 text-gray-300 hover:text-white hover:bg-adventure-purple/20 rounded-lg transition-colors touch-manipulation"
+          className="p-2 text-adventure-light/70 hover:text-adventure-light hover:bg-adventure-main/20 rounded-lg transition-colors touch-manipulation"
           aria-label="Previous month"
         >
           <ChevronLeft className="w-5 h-5" />
         </button>
         
         <div className="flex items-center gap-2">
-          <CalendarIcon className="w-5 h-5 text-adventure-purple" />
+          <CalendarIcon className="w-5 h-5 text-adventure-main" />
           <h3 className="text-lg sm:text-xl font-semibold">
             {monthNames[month]} {year}
           </h3>
@@ -122,7 +122,7 @@ export default function Calendar({ selectedDate, onDateSelect }: CalendarProps) 
         
         <button
           onClick={() => navigateMonth('next')}
-          className="p-2 text-gray-300 hover:text-white hover:bg-adventure-purple/20 rounded-lg transition-colors touch-manipulation"
+          className="p-2 text-adventure-light/70 hover:text-adventure-light hover:bg-adventure-main/20 rounded-lg transition-colors touch-manipulation"
           aria-label="Next month"
         >
           <ChevronRight className="w-5 h-5" />
@@ -134,7 +134,7 @@ export default function Calendar({ selectedDate, onDateSelect }: CalendarProps) 
         {dayNames.map((day) => (
           <div
             key={day}
-            className="text-center text-xs sm:text-sm font-semibold text-gray-400 py-2"
+            className="text-center text-xs sm:text-sm font-semibold text-adventure-light/70 py-2"
           >
             {day}
           </div>
@@ -162,9 +162,9 @@ export default function Calendar({ selectedDate, onDateSelect }: CalendarProps) 
                 !isSameMonth(date)
                   ? 'opacity-30'
                   : isSelected(date)
-                  ? 'bg-adventure-purple text-white scale-110 z-10 shadow-lg'
+                  ? 'bg-adventure-main text-adventure-light scale-110 z-10 shadow-lg'
                   : isToday(date)
-                  ? 'bg-adventure-cyan/20 border-2 border-adventure-cyan'
+                  ? 'bg-adventure-secondary/20 border-2 border-adventure-secondary'
                   : 'hover:bg-adventure-dark/70'
               }`}
             >
@@ -178,8 +178,8 @@ export default function Calendar({ selectedDate, onDateSelect }: CalendarProps) 
                   {hasCompletions && (
                     <div className={`h-1 w-full rounded ${
                       isAllCompleted
-                        ? 'bg-adventure-cyan'
-                        : 'bg-adventure-purple/60'
+                        ? 'bg-adventure-secondary'
+                        : 'bg-adventure-main/60'
                     }`} />
                   )}
                 </div>
@@ -190,21 +190,22 @@ export default function Calendar({ selectedDate, onDateSelect }: CalendarProps) 
       </div>
 
       {/* Legend */}
-      <div className="mt-4 pt-4 border-t border-adventure-purple/20 flex flex-wrap gap-4 text-xs sm:text-sm text-gray-400">
+      <div className="mt-4 pt-4 border-t border-adventure-main/20 flex flex-wrap gap-4 text-xs sm:text-sm text-adventure-light/70">
         <div className="flex items-center gap-2">
-          <div className="w-3 h-3 rounded bg-adventure-cyan" />
+          <div className="w-3 h-3 rounded bg-adventure-secondary" />
           <span>{t('calendar.allCompleted') || 'All habits completed'}</span>
         </div>
         <div className="flex items-center gap-2">
-          <div className="w-3 h-3 rounded bg-adventure-purple/60" />
+          <div className="w-3 h-3 rounded bg-adventure-main/60" />
           <span>{t('calendar.someCompleted') || 'Some habits completed'}</span>
         </div>
         <div className="flex items-center gap-2">
-          <div className="w-3 h-3 rounded border-2 border-adventure-cyan" />
+          <div className="w-3 h-3 rounded border-2 border-adventure-secondary" />
           <span>{t('calendar.today') || 'Today'}</span>
         </div>
       </div>
     </div>
   )
 }
+
 

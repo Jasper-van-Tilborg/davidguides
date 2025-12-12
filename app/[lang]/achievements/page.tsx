@@ -21,3 +21,7 @@ export default async function AchievementsPage({ params }: Props) {
   return <AchievementsContent />
 }
 
+
+
+
+
